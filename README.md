@@ -6,12 +6,12 @@ Perfect for setting up CI for your Emacs lisp repos.
 ### Lint your Emacs lisp files!
 
 ```bash
-docker run -v "$(pwd)":/mnt/workspace -t docker-emacs-package-lint:latest your-emacs-lisp-file.el
+docker run -v "$(pwd)":/mnt/workspace -t camsaul/docker-emacs-package-lint:latest your-emacs-lisp-file.el
 ```
 
 ### Building the Docker image locally
 
 ```bash
 git submodule init
-docker build . -t docker-emacs-package-lint:latest
+docker build . -t camsaul/docker-emacs-package-lint:latest
 ```
