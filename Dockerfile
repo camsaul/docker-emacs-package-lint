@@ -1,12 +1,14 @@
 ARG VERSION=edge
 FROM alpine:$VERSION
 
-MAINTAINER JAremko <w3techplaygound@gmail.com>
+MAINTAINER Cam Saul <emacs@camsaul.com>
 
 # Fix "Couldn't register with accessibility bus" error message
 ENV NO_AT_BRIDGE=1
 
 COPY asEnvUser /usr/local/sbin/
+
+COPY package-lint/package-lint.el /usr/local/package-lint.el
 
 RUN echo "http://nl.alpinelinux.org/alpine/edge/main" \
     >> /etc/apk/repositories \
@@ -51,5 +53,4 @@ ENV UNAME="emacser" \
 
 WORKDIR "${WORKSPACE}"
 
-ENTRYPOINT ["asEnvUser"]
-CMD ["bash", "-c", "emacs; /bin/bash"]
+ENTRYPOINT ["asEnvUser", "emacs", "-Q", "-nw", "-batch", "-l", "/usr/local/package-lint.el", "-f", "package-lint-batch-and-exit"]

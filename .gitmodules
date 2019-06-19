@@ -1,0 +1,3 @@
+[submodule "package-lint"]
+	path = package-lint
+	url = https://github.com/purcell/package-lint
